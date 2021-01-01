@@ -1,4 +1,8 @@
 {
+  "messagesColors": {
+    "commonMessageColor": "#b74e91",
+    "errorMessageColor": "#ff0014"
+  },
   "prefix": "!",
   "token": "TOKEN"
 }
