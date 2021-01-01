@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 
 const config = require("./config");
 const commands = require("./commands");
+const { createErrorMessage } = require("./utils");
 
 const client = new Discord.Client();
 
@@ -30,10 +31,14 @@ client.on("message", async (message) => {
       command.execute(message, args, client);
     } catch (error) {
       console.log(error);
-      message.channel.send("Error...Something went wrong");
+      message.channel.send(
+        createErrorMessage().setDescription("Error...Something went wrong")
+      );
     }
   } else {
-    message.channel.send("There is no such command");
+    message.channel.send(
+      createErrorMessage().setDescription("There is no such command")
+    );
   }
 });
 
