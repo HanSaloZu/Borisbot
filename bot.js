@@ -25,11 +25,15 @@ client.on("message", async (message) => {
   const commandName = args.shift();
   const command = commands.get(commandName);
 
-  try {
-    command.execute(message, args, client);
-  } catch (error) {
-    console.log(error);
-    message.channel.send("Error...Something went wrong");
+  if (command) {
+    try {
+      command.execute(message, args, client);
+    } catch (error) {
+      console.log(error);
+      message.channel.send("Error...Something went wrong");
+    }
+  } else {
+    message.channel.send("There is no such command");
   }
 });
 
