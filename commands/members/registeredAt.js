@@ -1,7 +1,7 @@
 const {
   getUserFromMention,
-  createErrorMessage,
-  createCommonMessage
+  createCommonMessage,
+  catchMentionErrors
 } = require("../../utils");
 const dateFormat = require("../../config").get("dateFormat");
 
@@ -24,16 +24,7 @@ module.exports = {
         )
       );
     } catch (error) {
-      if (
-        error.name === "MentionRequiredError" ||
-        error.name === "InvalidMentionError"
-      ) {
-        message.channel.send(
-          createErrorMessage().setDescription(error.message)
-        );
-      } else {
-        throw error;
-      }
+      catchMentionErrors(message, error);
     }
   }
 };
