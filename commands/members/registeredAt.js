@@ -3,6 +3,7 @@ const {
   createErrorMessage,
   createCommonMessage
 } = require("../../utils");
+const dateFormat = require("../../config").get("dateFormat");
 
 module.exports = {
   name: "registered-at",
@@ -16,15 +17,10 @@ module.exports = {
         createCommonMessage().setDescription(
           `${
             userNickname ? `${userNickname}(${user.username})` : user.username
-          } was registered at ${user.createdAt.toLocaleDateString("en-US", {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-            second: "numeric"
-          })}`
+          } was registered at ${user.createdAt.toLocaleDateString(
+            "en-US",
+            dateFormat
+          )}`
         )
       );
     } catch (error) {
