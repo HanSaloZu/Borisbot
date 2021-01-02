@@ -1,7 +1,7 @@
 class MentionRequiredError extends Error {
   constructor(message = "You need to mention the user") {
     super(message);
-    this.name = "mentionRequiredError";
+    this.name = "MentionRequiredError";
   }
 }
 

@@ -25,7 +25,7 @@ module.exports = {
       );
     } catch (error) {
       if (
-        error.name === "mentionRequiredError" ||
+        error.name === "MentionRequiredError" ||
         error.name === "InvalidMentionError"
       ) {
         message.channel.send(
