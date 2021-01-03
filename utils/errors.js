@@ -19,7 +19,15 @@ class InvalidMentionError extends CustomError {
   }
 }
 
+class PermissionError extends CustomError {
+  constructor(message = "You don't have permissions to execute this command") {
+    super(message);
+    this.name = "PermissionError";
+  }
+}
+
 module.exports = {
   MentionRequiredError,
-  InvalidMentionError
+  InvalidMentionError,
+  PermissionError
 };
