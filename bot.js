@@ -30,10 +30,16 @@ client.on("message", async (message) => {
     try {
       command.execute(message, args, client);
     } catch (error) {
-      console.log(error);
-      message.channel.send(
-        createErrorMessage().setDescription("Error...Something went wrong")
-      );
+      if (error.type === "custom") {
+        message.channel.send(
+          createErrorMessage().setDescription(error.message)
+        );
+      } else {
+        console.log(error);
+        message.channel.send(
+          createErrorMessage().setDescription("Error...Something went wrong")
+        );
+      }
     }
   } else {
     message.channel.send(
