@@ -1,9 +1,5 @@
-const registeredAt = require("./registeredAt");
-const joinedAt = require("./joinedAt");
-const ban = require("./ban");
-
 module.exports = {
-  registeredAt,
-  joinedAt,
-  ban
+  registeredAt: require("./registeredAt"),
+  joinedAt: require("./joinedAt"),
+  ban: require("./ban")
 };
