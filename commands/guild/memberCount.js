@@ -5,7 +5,7 @@ module.exports = {
   description: "Sends the full amount of members in this guild",
   execute(message) {
     message.channel.send(
-      createCommonMessage().setDescription(
+      createCommonMessage(
         `The full amount of members in this guild is ${message.guild.memberCount}`
       )
     );

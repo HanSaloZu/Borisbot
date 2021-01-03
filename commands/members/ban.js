@@ -16,16 +16,13 @@ module.exports = {
     if (!args.length) throw new MentionRequiredError();
 
     let membersToBan = [];
-
     for (let mention of args) {
       const userId = getUserIdFromMention(mention);
       const member = message.guild.members.cache.get(userId);
 
       if (!member.bannable) {
         return message.channel.send(
-          createErrorMessage().setDescription(
-            `I cannot ban ${member.user.toString()}`
-          )
+          createErrorMessage(`I cannot ban ${member.user.toString()}`)
         );
       }
       membersToBan.push(member);
@@ -36,7 +33,7 @@ module.exports = {
     ).then(() => {
       let response =
         generateMentionsString(membersToBan) + " banned from this guild";
-      message.channel.send(createCommonMessage().setDescription(response));
+      message.channel.send(createCommonMessage(response));
     });
   }
 };

@@ -10,7 +10,7 @@ module.exports = {
     );
 
     message.channel.send(
-      createCommonMessage().setDescription(
+      createCommonMessage(
         `${guildMember.user.toString()} was joined this guild at ${guildMember.joinedAt.toLocaleDateString(
           "en-US",
           dateFormat

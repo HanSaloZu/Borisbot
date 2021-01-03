@@ -31,13 +31,11 @@ client.on("message", async (message) => {
       command.execute(message, args, client);
     } catch (error) {
       if (error.type === "custom") {
-        message.channel.send(
-          createErrorMessage().setDescription(error.message)
-        );
+        message.channel.send(createErrorMessage(error.message));
       } else {
         console.log(error);
         message.channel.send(
-          createErrorMessage().setDescription("Error...Something went wrong")
+          createErrorMessage("Error...Something went wrong")
         );
       }
     }

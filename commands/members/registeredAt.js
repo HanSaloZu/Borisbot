@@ -8,7 +8,7 @@ module.exports = {
     const user = client.users.cache.get(getUserIdFromMention(args[0]));
 
     message.channel.send(
-      createCommonMessage().setDescription(
+      createCommonMessage(
         `${user.toString()} was registered at ${user.createdAt.toLocaleDateString(
           "en-US",
           dateFormat

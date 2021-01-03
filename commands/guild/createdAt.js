@@ -10,9 +10,7 @@ module.exports = {
       dateFormat
     );
     message.channel.send(
-      createCommonMessage().setDescription(
-        `The guild was created on ${createdAt}`
-      )
+      createCommonMessage(`The guild was created on ${createdAt}`)
     );
   }
 };
