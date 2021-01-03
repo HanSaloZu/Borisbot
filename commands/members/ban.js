@@ -10,7 +10,7 @@ const { createErrorMessage } = require("../../utils/messages");
 module.exports = {
   name: "ban",
   description: "Bans the users from the guild",
-  execute(message, args, client) {
+  execute(message, args) {
     if (!message.member.permissions.has("BAN_MEMBERS"))
       throw new PermissionError();
     if (!args.length) throw new MentionRequiredError();
@@ -18,7 +18,7 @@ module.exports = {
     let membersToBan = [];
 
     for (let mention of args) {
-      const userId = getUserIdFromMention(mention, client);
+      const userId = getUserIdFromMention(mention);
       const member = message.guild.members.cache.get(userId);
 
       if (!member.bannable) {
