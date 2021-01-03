@@ -1,11 +1,11 @@
 const { createCommonMessage, createErrorMessage } = require("./messages");
-const getUserFromMention = require("./getUserFromMention");
+const getUserIdFromMention = require("./getUserIdFromMention");
 const { MentionRequiredError, PermissionError } = require("./errors");
 
 module.exports = {
   createCommonMessage,
   createErrorMessage,
-  getUserFromMention,
+  getUserIdFromMention,
   MentionRequiredError,
   PermissionError
 };
