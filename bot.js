@@ -41,10 +41,6 @@ client.on("message", async (message) => {
         );
       }
     }
-  } else {
-    message.channel.send(
-      createErrorMessage().setDescription("There is no such command")
-    );
   }
 });
 
