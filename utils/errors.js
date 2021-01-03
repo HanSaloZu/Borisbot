@@ -13,7 +13,10 @@ class MentionRequiredError extends CustomError {
 }
 
 class InvalidMentionError extends CustomError {
-  constructor(message = "Invalid mention, user not found") {
+  constructor(
+    mention,
+    message = `${mention} - Invalid mention, user not found`
+  ) {
     super(message);
     this.name = "InvalidMentionError";
   }

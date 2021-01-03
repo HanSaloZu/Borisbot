@@ -9,6 +9,6 @@ module.exports = (mention) => {
 
     return mention;
   } else {
-    throw new InvalidMentionError();
+    throw new InvalidMentionError(mention);
   }
 };
