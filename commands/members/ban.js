@@ -17,8 +17,9 @@ module.exports = {
 
     let membersToBan = [];
     for (let mention of args) {
-      const userId = getUserIdFromMention(mention);
-      const member = message.guild.members.cache.get(userId);
+      const member = message.guild.members.cache.get(
+        getUserIdFromMention(mention)
+      );
 
       if (!member.bannable) {
         return message.channel.send(

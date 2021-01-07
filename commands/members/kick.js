@@ -17,17 +17,16 @@ module.exports = {
 
     let membersToKick = [];
     for (let mention of args) {
-      const userId = getUserIdFromMention(mention);
-      const member = message.guild.members.cache.get(userId);
+      const member = message.guild.members.cache.get(
+        getUserIdFromMention(mention)
+      );
 
       if (!member.kickable) {
         return message.channel.send(
           createErrorMessage(`I cannot kick ${member.user.toString()}`)
         );
       }
-      membersToKick.push(
-        message.guild.members.cache.get(getUserIdFromMention(mention))
-      );
+      membersToKick.push(member);
     }
 
     Promise.all(membersToKick.map((member) => member.kick())).then(() => {
