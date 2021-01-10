@@ -29,8 +29,16 @@ class PermissionError extends CustomError {
   }
 }
 
+class InvalidArgumentError extends CustomError {
+  constructor(message = "Invalid argument") {
+    super(message);
+    this.name = "InvalidArgumentError";
+  }
+}
+
 module.exports = {
   MentionRequiredError,
   InvalidMentionError,
-  PermissionError
+  PermissionError,
+  InvalidArgumentError
 };

@@ -1,7 +1,11 @@
 const { createCommonMessage, createErrorMessage } = require("./messages");
 const getUserIdFromMention = require("./getUserIdFromMention");
 const generateMentionsString = require("./generateMentionsString");
-const { MentionRequiredError, PermissionError } = require("./errors");
+const {
+  MentionRequiredError,
+  PermissionError,
+  InvalidArgumentError
+} = require("./errors");
 
 module.exports = {
   createCommonMessage,
@@ -9,5 +13,6 @@ module.exports = {
   getUserIdFromMention,
   generateMentionsString,
   MentionRequiredError,
-  PermissionError
+  PermissionError,
+  InvalidArgumentError
 };
