@@ -1,7 +1,8 @@
 const commandsObject = Object.assign(
   {},
   require("./guild"),
-  require("./members")
+  require("./members"),
+  require("./messages")
 );
 const commands = new Map();
 
