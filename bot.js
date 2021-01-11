@@ -1,10 +1,12 @@
 const Discord = require("discord.js");
 
 const config = require("./config");
-const commands = require("./commands");
 const { createErrorMessage } = require("./utils");
+const commands = require("./commands");
+const help = require("./commands/help");
 
 const client = new Discord.Client();
+commands.set("help", help);
 
 client.on("ready", () => {
   console.log("Ready");
