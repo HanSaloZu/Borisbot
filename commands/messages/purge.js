@@ -33,7 +33,7 @@ module.exports = {
       .then((fetchedMessages) => {
         let deletingMessages = [];
 
-        for (const [_, messageObject] of fetchedMessages) {
+        for (const [, messageObject] of fetchedMessages) {
           if (userId) {
             if (messagesAmount > deletingMessages.length) {
               if (messageObject.author.id === userId) {
