@@ -9,7 +9,8 @@ const { createErrorMessage } = require("../../utils/messages");
 
 module.exports = {
   name: "kick",
-  description: "Kicks the users from the guild",
+  description:
+    "Kicks the users from the guild\n\n `kick @<username> @<username> @<username> ...(must be at least one username)`",
   execute(message, args) {
     if (!message.member.permissions.has("KICK_MEMBERS"))
       throw new PermissionError();

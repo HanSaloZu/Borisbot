@@ -3,7 +3,8 @@ const dateFormat = require("../../config").get("dateFormat");
 
 module.exports = {
   name: "joined-at",
-  description: "Sends the time the user joined the guild",
+  description:
+    "Gives the time when the user joined the guild\n\n `joined-at @<username>(optional, default value: message sender)`",
   execute(message, args) {
     const guildMember = message.guild.members.cache.get(
       getUserIdFromMention(args[0])

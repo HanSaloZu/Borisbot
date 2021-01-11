@@ -9,7 +9,8 @@ const { createErrorMessage } = require("../../utils/messages");
 
 module.exports = {
   name: "ban",
-  description: "Bans the users from the guild",
+  description:
+    "Bans the users from the guild\n\n `ban @<username> @<username> @<username> ...(must be at least one username)`",
   execute(message, args) {
     if (!message.member.permissions.has("BAN_MEMBERS"))
       throw new PermissionError();

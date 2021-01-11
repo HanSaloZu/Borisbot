@@ -3,7 +3,7 @@ const dateFormat = require("../../config").get("dateFormat");
 
 module.exports = {
   name: "guild-created-at",
-  description: "Sends the time the guild was created at",
+  description: "Gives the creation time of the guild",
   execute(message) {
     const createdAt = message.guild.createdAt.toLocaleDateString(
       "en-US",
