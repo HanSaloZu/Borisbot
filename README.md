@@ -28,24 +28,29 @@ Borisbot will help you simplify the process of moderating the discord server. Bo
 - Install [Node.js](https://nodejs.org/en/)
 - Install [Docker](https://www.docker.com/)(optional)
 - Download Borisbot(`git clone https://github.com/HanSaloZu/Borisbot.git` or download the ZIP)
+- `cd` to the bot directory
 
 ### Configuration
 
-- `cd` to the bot directory
 - After cloning the project you need to add your Discord API token in the config/config.json file
 - In the same file, you can change the commands prefix, date format and message colors
 
 ### Starting the bot
 
 ```
+# install the Node dependencies
+npm install
+
 npm run start
 ```
 
 ### Starting the bot using Docker
 
 ```
+# build the image
 docker build -t borisbot .
 
+# run the image
 docker run -d borisbot
 ```
 
