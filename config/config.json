@@ -1,0 +1,17 @@
+{
+  "messagesColors": {
+    "commonMessageColor": "#b74e91",
+    "errorMessageColor": "#ff0014"
+  },
+  "dateFormat": {
+    "weekday": "long",
+    "year": "numeric",
+    "month": "long",
+    "day": "numeric",
+    "hour": "numeric",
+    "minute": "numeric",
+    "second": "numeric"
+  },
+  "prefix": "!",
+  "token": "TOKEN"
+}
