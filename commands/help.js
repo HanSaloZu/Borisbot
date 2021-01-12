@@ -4,7 +4,7 @@ const commands = require("./index");
 
 module.exports = {
   name: "help",
-  description: "Bot description",
+  description: "Gives a bot description and a list of commands",
   execute(message, args) {
     let response = "";
     if (!args.length) {
