@@ -2,7 +2,7 @@ FROM node:lts
 
 WORKDIR usr/src/app/
 
-RUN apt-get update && apt-get upgrade
+RUN apt-get update && apt-get upgrade -y
 
 COPY package*.json ./
 
