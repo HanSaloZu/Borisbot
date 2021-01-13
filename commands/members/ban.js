@@ -18,7 +18,7 @@ module.exports = {
 
     let membersToBan = [];
     for (let mention of args) {
-      const member = message.guild.members.cache.get(
+      const member = await message.guild.members.fetch(
         getUserIdFromMention(mention)
       );
 
