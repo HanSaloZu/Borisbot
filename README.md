@@ -58,6 +58,16 @@ docker run -d borisbot
 
 Enter `help` in the guild chat for a list of commands
 
+### List of permissions that the bot must have to work properly
+
+- Send Messages
+- Read Message History
+- Manage Messages
+- Embed Links
+- Mention Everyone
+- Kick Members
+- Ban Members
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
