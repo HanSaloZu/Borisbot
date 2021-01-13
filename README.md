@@ -21,6 +21,10 @@ Borisbot will help you simplify the process of moderating the discord server. Bo
 
 - `purge <amount>(optional, default value: 2) @<senderUsername>(optional, default value: all users)` - deletes messages in a text channel
 
+### Other
+
+- `version` - gives the current version of the bot
+
 ## Getting started
 
 ### Installation
