@@ -9,7 +9,7 @@ module.exports = {
   name: "purge",
   description:
     "Deletes messages in a text channel\n This command may takes a while, but the chat using is allowed, new messages will not be deleted.\n\n `purge <amount>(optional, default value: 2) @<senderUsername>(optional, default value: all users)`",
-  execute(message, args) {
+  async execute(message, args) {
     if (!message.member.permissions.has("MANAGE_MESSAGES"))
       throw new PermissionError();
     if (!args.length) args.push(2);
@@ -28,32 +28,28 @@ module.exports = {
     let userId = null;
     if (args[1]) userId = getUserIdFromMention(args[1]);
 
-    message.channel.messages
-      .fetch({ limit: userId ? 100 : messagesAmount })
-      .then((fetchedMessages) => {
-        let deletingMessages = [];
+    let fetchedMessages = await message.channel.messages.fetch({
+      limit: userId ? 100 : messagesAmount
+    });
+    let deletingMessages = [];
 
-        for (const [, messageObject] of fetchedMessages) {
-          if (userId) {
-            if (messagesAmount > deletingMessages.length) {
-              if (messageObject.author.id === userId) {
-                deletingMessages.push(
-                  message.channel.messages.delete(messageObject)
-                );
-              }
-            } else break;
-          } else {
+    for (const [, messageObject] of fetchedMessages) {
+      if (userId) {
+        if (messagesAmount > deletingMessages.length) {
+          if (messageObject.author.id === userId) {
             deletingMessages.push(
               message.channel.messages.delete(messageObject)
             );
           }
-        }
+        } else break;
+      } else {
+        deletingMessages.push(message.channel.messages.delete(messageObject));
+      }
+    }
 
-        Promise.all(deletingMessages).then(() =>
-          message.channel.send(
-            createCommonMessage("Messages were successfully deleted.")
-          )
-        );
-      });
+    await Promise.all(deletingMessages);
+    message.channel.send(
+      createCommonMessage("Messages were successfully deleted.")
+    );
   }
 };

@@ -5,7 +5,7 @@ module.exports = {
   name: "joined-at",
   description:
     "Gives the time when the user joined the guild\n\n `joined-at @<username>(optional, default value: message sender)`",
-  execute(message, args) {
+  async execute(message, args) {
     const guildMember = args[0]
       ? message.guild.members.cache.get(getUserIdFromMention(args[0]))
       : message.member;
