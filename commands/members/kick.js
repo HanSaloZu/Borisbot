@@ -11,14 +11,14 @@ module.exports = {
   name: "kick",
   description:
     "Kicks the users from the guild\n\n `kick @<username> @<username> @<username> ...(must be at least one username)`",
-  execute(message, args) {
+  async execute(message, args) {
     if (!message.member.permissions.has("KICK_MEMBERS"))
       throw new PermissionError();
     if (!args.length) throw new MentionRequiredError();
 
     let membersToKick = [];
     for (let mention of args) {
-      const member = message.guild.members.cache.get(
+      const member = await message.guild.members.fetch(
         getUserIdFromMention(mention)
       );
 
@@ -30,10 +30,9 @@ module.exports = {
       membersToKick.push(member);
     }
 
-    Promise.all(membersToKick.map((member) => member.kick())).then(() => {
-      let response =
-        generateMentionsString(membersToKick) + " kicked from this guild";
-      message.channel.send(createCommonMessage(response));
-    });
+    await Promise.all(membersToKick.map((member) => member.kick()));
+    let response =
+      generateMentionsString(membersToKick) + " kicked from this guild";
+    message.channel.send(createCommonMessage(response));
   }
 };

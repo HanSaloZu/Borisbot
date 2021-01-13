@@ -16,7 +16,7 @@ module.exports = {
         )
         .addField(
           "Commands",
-          `Category: guild \n \`${pref}guild-created-at\` \n \`${pref}member-count\` \n \`${pref}guild-owner\` \n\n Category: guild members \n \`${pref}registered-at @<username>\` \n \`${pref}joined-at @<username>\` \n \`${pref}ban @<username> @<username> ...\` \n \`${pref}unban @<username> @<username> ...\` \n \`${pref}kick @<username> @<username> ...\` \n\n Category: messages \n \`${pref}purge <amount> @<username>\` \n\n To get detailed information about the command, type \`${pref}help <command>\``
+          `Category: guild \n \`${pref}guild-created-at\` \n \`${pref}member-count\` \n \`${pref}guild-owner\` \n\n Category: guild members \n \`${pref}registered-at @<username>\` \n \`${pref}joined-at @<username>\` \n \`${pref}ban @<username> @<username> ...\` \n \`${pref}kick @<username> @<username> ...\` \n\n Category: messages \n \`${pref}purge <amount> @<username>\` \n\n Category: other \n \`${pref}version\` \n\n To get detailed information about the command, type \`${pref}help <command>\``
         );
     } else {
       const command = commands.get(args[0]);
