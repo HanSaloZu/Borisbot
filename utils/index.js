@@ -1,4 +1,8 @@
-const { createCommonMessage, createErrorMessage } = require("./messages");
+const {
+  createCommonMessage,
+  createErrorMessage,
+  createTimestampedMessage
+} = require("./messages");
 const getUserIdFromMention = require("./getUserIdFromMention");
 const generateMentionsString = require("./generateMentionsString");
 const {
@@ -10,6 +14,7 @@ const {
 module.exports = {
   createCommonMessage,
   createErrorMessage,
+  createTimestampedMessage,
   getUserIdFromMention,
   generateMentionsString,
   MentionRequiredError,
