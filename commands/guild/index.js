@@ -1,4 +1,3 @@
 module.exports = {
-  guildOwner: require("./owner"),
-  memberCount: require("./memberCount")
+  guildOwner: require("./owner")
 };
