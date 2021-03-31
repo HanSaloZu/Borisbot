@@ -1,3 +1,3 @@
 module.exports = {
-  info: require("./info")
+  guildInfo: require("./info")
 };

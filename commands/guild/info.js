@@ -13,7 +13,7 @@ module.exports = {
 
     message.channel.send(
       createTimestampedMessage()
-        .setAuthor("Guild Info")
+        .setTitle("Guild Info")
         .setThumbnail(message.guild.iconURL())
         .addField(
           "General",
