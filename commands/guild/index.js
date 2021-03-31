@@ -1,3 +1,1 @@
-module.exports = {
-  guildOwner: require("./owner")
-};
+module.exports = {};
