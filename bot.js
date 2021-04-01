@@ -23,6 +23,11 @@ client.on("disconnect", () => {
 client.on("message", async (message) => {
   const prefix = config.get("prefix");
   if (message.author.bot || !message.content.startsWith(prefix)) return;
+  if (!message.guild) {
+    return message.channel.send(
+      createErrorMessage("This is not a guild channel!")
+    );
+  }
 
   const args = message.content.trim().slice(prefix.length).split(/ +/);
   const commandName = args.shift();
