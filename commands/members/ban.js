@@ -1,10 +1,5 @@
-const {
-  getUserIdFromMention,
-  messages,
-  generateMentionsString,
-  errors
-} = require("../../utils");
-const { createErrorMessage } = require("../../utils/messages");
+const { getUserIdFromMention, messages, errors } = require("../../utils");
+const generateMentionsString = require("./generateMentionsString");
 
 module.exports = {
   name: "ban",
@@ -23,7 +18,7 @@ module.exports = {
 
       if (!member.bannable) {
         return message.channel.send(
-          createErrorMessage(`I cannot ban ${member.user.toString()}`)
+          messages.createErrorMessage(`I cannot ban ${member.user.toString()}`)
         );
       }
       membersToBan.push(member);
