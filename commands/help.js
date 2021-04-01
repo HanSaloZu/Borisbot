@@ -26,6 +26,7 @@ module.exports = {
             `\`${pref}purge <amount> @<username>\` \n\n` +
             "Category: other \n" +
             `\`${pref}flipcoin\` \n` +
+            `\`${pref}btc\` \n` +
             `\`${pref}version\` \n\n` +
             `To get detailed information about the command, type \`${pref}help <command>\``
         );
