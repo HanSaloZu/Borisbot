@@ -1,4 +1,4 @@
-const { http, createCommonMessage } = require("../../utils");
+const { http, messages } = require("../../utils");
 
 module.exports = {
   name: "btc",
@@ -13,7 +13,8 @@ module.exports = {
       const price = data.bpi.USD.rate;
 
       message.channel.send(
-        createCommonMessage(`Current Bitcoin price is: $${price}`)
+        messages
+          .createCommonMessage(`Current Bitcoin price is: $${price}`)
           .setTitle("Powered by CoinDesk")
           .setURL("https://www.coindesk.com/price/bitcoin")
       );

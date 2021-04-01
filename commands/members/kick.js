@@ -1,9 +1,8 @@
 const {
   getUserIdFromMention,
-  createCommonMessage,
+  messages,
   generateMentionsString,
-  MentionRequiredError,
-  PermissionError
+  errors
 } = require("../../utils");
 const { createErrorMessage } = require("../../utils/messages");
 
@@ -13,8 +12,8 @@ module.exports = {
     "Kicks the users from the guild\n\n `kick @<username> @<username> @<username> ...(must be at least one username)`",
   async execute(message, args) {
     if (!message.member.permissions.has("KICK_MEMBERS"))
-      throw new PermissionError();
-    if (!args.length) throw new MentionRequiredError();
+      throw new errors.PermissionError();
+    if (!args.length) throw new errors.MentionRequiredError();
 
     let membersToKick = [];
     for (let mention of args) {
@@ -33,6 +32,6 @@ module.exports = {
     await Promise.all(membersToKick.map((member) => member.kick()));
     let response =
       generateMentionsString(membersToKick) + " kicked from this guild";
-    message.channel.send(createCommonMessage(response));
+    message.channel.send(messages.createCommonMessage(response));
   }
 };

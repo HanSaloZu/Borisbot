@@ -1,5 +1,8 @@
 const pref = require("../config").get("prefix");
-const { createCommonMessage, createErrorMessage } = require("../utils");
+const {
+  createCommonMessage,
+  createErrorMessage
+} = require("../utils").messages;
 const commands = require("./index");
 
 module.exports = {

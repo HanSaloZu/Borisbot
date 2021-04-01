@@ -1,4 +1,4 @@
-const { createTimestampedMessage } = require("../../utils");
+const { createTimestampedMessage } = require("../../utils").messages;
 const dateFormat = require("../../config").get("dateFormat");
 
 module.exports = {

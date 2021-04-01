@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 const config = require("./config");
-const { createErrorMessage } = require("./utils");
+const { createErrorMessage } = require("./utils").messages;
 const commands = require("./commands");
 const help = require("./commands/help");
 

@@ -1,7 +1,4 @@
-const {
-  getUserIdFromMention,
-  createTimestampedMessage
-} = require("../../utils");
+const { getUserIdFromMention, messages } = require("../../utils");
 const dateFormat = require("../../config").get("dateFormat");
 
 module.exports = {
@@ -20,7 +17,8 @@ module.exports = {
     const isGuildOwner = user.id === guildOwner.id;
 
     message.channel.send(
-      createTimestampedMessage()
+      messages
+        .createTimestampedMessage()
         .setTitle("User/Guild member info")
         .setThumbnail(user.displayAvatarURL())
         .addField(

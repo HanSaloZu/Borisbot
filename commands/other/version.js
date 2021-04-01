@@ -1,4 +1,4 @@
-const { http, createCommonMessage } = require("../../utils");
+const { http, messages } = require("../../utils");
 
 module.exports = {
   name: "version",
@@ -12,7 +12,7 @@ module.exports = {
     http.GET(requestOptions, (data) => {
       const lastRelease = data[0];
       const messageText = `The current version of the bot is ${lastRelease.tag_name}`;
-      message.channel.send(createCommonMessage(messageText));
+      message.channel.send(messages.createCommonMessage(messageText));
     });
   }
 };

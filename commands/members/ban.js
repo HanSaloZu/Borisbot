@@ -1,9 +1,8 @@
 const {
   getUserIdFromMention,
-  createCommonMessage,
+  messages,
   generateMentionsString,
-  MentionRequiredError,
-  PermissionError
+  errors
 } = require("../../utils");
 const { createErrorMessage } = require("../../utils/messages");
 
@@ -13,8 +12,8 @@ module.exports = {
     "Bans the users from the guild\n\n `ban @<username> @<username> @<username> ...(must be at least one username)`",
   async execute(message, args) {
     if (!message.member.permissions.has("BAN_MEMBERS"))
-      throw new PermissionError();
-    if (!args.length) throw new MentionRequiredError();
+      throw new errors.PermissionError();
+    if (!args.length) throw new errors.MentionRequiredError();
 
     let membersToBan = [];
     for (let mention of args) {
@@ -35,6 +34,6 @@ module.exports = {
     );
     let response =
       generateMentionsString(membersToBan) + " banned from this guild";
-    message.channel.send(createCommonMessage(response));
+    message.channel.send(messages.createCommonMessage(response));
   }
 };

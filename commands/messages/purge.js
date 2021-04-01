@@ -1,9 +1,4 @@
-const {
-  PermissionError,
-  InvalidArgumentError,
-  getUserIdFromMention,
-  createCommonMessage
-} = require("../../utils");
+const { errors, getUserIdFromMention, messages } = require("../../utils");
 
 module.exports = {
   name: "purge",
@@ -11,7 +6,7 @@ module.exports = {
     "Deletes messages in a text channel\n This command may takes a while, but the chat using is allowed, new messages will not be deleted.\n\n `purge <amount>(optional, default value: 2) @<senderUsername>(optional, default value: all users)`",
   async execute(message, args) {
     if (!message.member.permissions.has("MANAGE_MESSAGES"))
-      throw new PermissionError();
+      throw new errors.PermissionError();
     if (!args.length) args.push(2);
 
     let messagesAmount = Number(args[0]);
@@ -21,7 +16,7 @@ module.exports = {
       messagesAmount < 2 ||
       messagesAmount > 100
     )
-      throw new InvalidArgumentError(
+      throw new errors.InvalidArgumentError(
         "Invalid argument! The amount of messages must be an integer greater than 2 and less than 100"
       );
 
@@ -49,7 +44,7 @@ module.exports = {
 
     await Promise.all(deletingMessages);
     message.channel.send(
-      createCommonMessage("Messages were successfully deleted.")
+      messages.createCommonMessage("Messages were successfully deleted.")
     );
   }
 };
