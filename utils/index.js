@@ -10,6 +10,7 @@ const {
   PermissionError,
   InvalidArgumentError
 } = require("./errors");
+const http = require("./http");
 
 module.exports = {
   createCommonMessage,
@@ -19,5 +20,6 @@ module.exports = {
   generateMentionsString,
   MentionRequiredError,
   PermissionError,
-  InvalidArgumentError
+  InvalidArgumentError,
+  http
 };
