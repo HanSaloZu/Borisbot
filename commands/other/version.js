@@ -1,29 +1,18 @@
-const https = require("https");
-const { createCommonMessage } = require("../../utils");
+const { http, messages } = require("../../utils");
 
 module.exports = {
   name: "version",
   description: "Gives the current version of the bot",
   async execute(message) {
-    const options = {
+    const requestOptions = {
       host: "api.github.com",
-      path: "/repos/HanSaloZu/Borisbot/releases",
-      method: "GET",
-      headers: { "User-Agent": "Borisbot" }
+      path: "/repos/HanSaloZu/Borisbot/releases"
     };
 
-    https
-      .request(options, (res) => {
-        let data = "";
-
-        res.setEncoding("utf8");
-        res.on("data", (chunk) => (data += chunk));
-        res.on("end", () => {
-          const lastRelease = JSON.parse(data)[0];
-          const messageText = `The current version of the bot is ${lastRelease.tag_name}`;
-          message.channel.send(createCommonMessage(messageText));
-        });
-      })
-      .end();
+    http.GET(requestOptions, (data) => {
+      const lastRelease = data[0];
+      const messageText = `The current version of the bot is ${lastRelease.tag_name}`;
+      message.channel.send(messages.createCommonMessage(messageText));
+    });
   }
 };

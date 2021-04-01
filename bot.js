@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 const config = require("./config");
-const { createErrorMessage } = require("./utils");
+const { createErrorMessage } = require("./utils").messages;
 const commands = require("./commands");
 const help = require("./commands/help");
 
@@ -23,6 +23,11 @@ client.on("disconnect", () => {
 client.on("message", async (message) => {
   const prefix = config.get("prefix");
   if (message.author.bot || !message.content.startsWith(prefix)) return;
+  if (!message.guild) {
+    return message.channel.send(
+      createErrorMessage("This is not a guild channel!")
+    );
+  }
 
   const args = message.content.trim().slice(prefix.length).split(/ +/);
   const commandName = args.shift();
@@ -30,7 +35,7 @@ client.on("message", async (message) => {
 
   if (command) {
     try {
-      await command.execute(message, args, client);
+      await command.execute(message, client, args);
     } catch (error) {
       if (error.type === "custom") {
         message.channel.send(createErrorMessage(error.message));

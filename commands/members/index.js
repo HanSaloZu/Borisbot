@@ -1,6 +1,5 @@
 module.exports = {
-  registeredAt: require("./registeredAt"),
-  joinedAt: require("./joinedAt"),
+  userInfo: require("./info"),
   ban: require("./ban"),
   kick: require("./kick")
 };

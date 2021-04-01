@@ -1,3 +1,5 @@
 module.exports = {
-  version: require("./version")
+  version: require("./version"),
+  btc: require("./btc"),
+  flipcoin: require("./flipcoin")
 };
