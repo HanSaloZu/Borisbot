@@ -1,32 +1,28 @@
-const { getUserIdFromMention, messages, errors } = require("../../utils");
+const { messages, errors } = require("../../utils");
 const generateMentionsString = require("./generateMentionsString");
 
 module.exports = {
   name: "ban",
   description:
     "Bans the users from the guild\n\n `ban @<username> @<username> @<username> ...(must be at least one username)`",
-  async execute(message, args) {
+  async execute(message) {
     if (!message.member.permissions.has("BAN_MEMBERS"))
       throw new errors.PermissionError();
-    if (!args.length) throw new errors.MentionRequiredError();
+    if (!message.mentions.users.size) throw new errors.MentionRequiredError();
 
     let membersToBan = [];
-    for (let mention of args) {
-      const member = await message.guild.members.fetch(
-        getUserIdFromMention(mention)
-      );
+    for (let user of message.mentions.users) {
+      const member = await message.guild.members.fetch(user[1]);
 
       if (!member.bannable) {
         return message.channel.send(
-          messages.createErrorMessage(`I cannot ban ${member.user.toString()}`)
+          messages.createErrorMessage(`I cannot ban ${member.toString()}`)
         );
       }
       membersToBan.push(member);
     }
 
-    Promise.all(
-      membersToBan.map((member) => message.guild.members.ban(member.user))
-    );
+    Promise.all(membersToBan.map((member) => member.ban()));
     let response =
       generateMentionsString(membersToBan) + " banned from this guild";
     message.channel.send(messages.createCommonMessage(response));

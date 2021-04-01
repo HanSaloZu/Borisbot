@@ -1,4 +1,4 @@
-const { getUserIdFromMention, messages } = require("../../utils");
+const { messages } = require("../../utils");
 const dateFormat = require("../../config").get("dateFormat");
 
 module.exports = {
@@ -6,12 +6,10 @@ module.exports = {
   description:
     "Provides complete information about the user/guild member\n\n `user-info @<username>(optional, default value: message sender)`",
   async execute(message, args, client) {
-    const user = args[0]
-      ? await client.users.fetch(getUserIdFromMention(args[0]))
-      : message.author;
+    const user = message.mentions.users.first() || message.author;
     const registeredAt = user.createdAt.toLocaleDateString("en-US", dateFormat);
 
-    const guildMember = message.guild.member(user);
+    const guildMember = await message.guild.members.fetch(user);
     const isPremium = Boolean(guildMember.premiumSince);
     const guildOwner = await client.users.fetch(message.guild.ownerID);
     const isGuildOwner = user.id === guildOwner.id;

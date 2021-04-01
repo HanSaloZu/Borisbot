@@ -1,4 +1,4 @@
-const { errors, getUserIdFromMention, messages } = require("../../utils");
+const { errors, messages } = require("../../utils");
 
 module.exports = {
   name: "purge",
@@ -20,18 +20,16 @@ module.exports = {
         "Invalid argument! The amount of messages must be an integer greater than 2 and less than 100"
       );
 
-    let userId = null;
-    if (args[1]) userId = getUserIdFromMention(args[1]);
-
+    const user = message.mentions.users.first() || null;
     let fetchedMessages = await message.channel.messages.fetch({
-      limit: userId ? 100 : messagesAmount
+      limit: messagesAmount
     });
     let deletingMessages = [];
 
     for (const [, messageObject] of fetchedMessages) {
-      if (userId) {
+      if (user) {
         if (messagesAmount > deletingMessages.length) {
-          if (messageObject.author.id === userId) {
+          if (messageObject.author.id === user.id) {
             deletingMessages.push(
               message.channel.messages.delete(messageObject)
             );
