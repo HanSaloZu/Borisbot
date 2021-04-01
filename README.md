@@ -4,16 +4,13 @@ Borisbot will help you simplify the process of moderating the discord server. Bo
 
 ## Commands
 
-#### Guild info
+#### Guild
 
-- `guild-created-at` - gives the creation time of the guild
-- `member-count` - gives the full amount of members in this guild
-- `guild-owner` - gives the owner of the guild
+- `guild-info` - gives complete information about the guild
 
 #### Members
 
-- `registered-at @<username>(optional, default value: message sender)` - gives the time when the user was registered
-- `joined-at @<username>(optional, default value: message sender)` - gives the time when the user joined the guild
+- `user-info @<username>(optional, default value: message sender)` - gives complete information about the user/guild member
 - `ban @<username> @<username> @<username> ...(must be at least one username)` - bans the users from the guild
 - `kick @<username> @<username> @<username> ...(must be at least one username)` - kicks the users from the guild
 
@@ -23,6 +20,8 @@ Borisbot will help you simplify the process of moderating the discord server. Bo
 
 ### Other
 
+- `flipcoin` - flip a coin
+- `btc` - gives the current bitcoin price (Powered by [CoinDesk](https://www.coindesk.com/price/bitcoin))
 - `version` - gives the current version of the bot
 
 ## Getting started
