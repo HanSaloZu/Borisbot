@@ -4,7 +4,7 @@ const dateFormat = require("../../config").get("dateFormat");
 module.exports = {
   name: "guild-info",
   description: "Gives complete information about the guild",
-  async execute(message, args, client) {
+  async execute(message, client) {
     const guild = message.guild;
     const guildOwner = await client.users.fetch(guild.ownerID);
     const guildRegion =

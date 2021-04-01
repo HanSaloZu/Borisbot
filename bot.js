@@ -35,7 +35,7 @@ client.on("message", async (message) => {
 
   if (command) {
     try {
-      await command.execute(message, args, client);
+      await command.execute(message, client, args);
     } catch (error) {
       if (error.type === "custom") {
         message.channel.send(createErrorMessage(error.message));
