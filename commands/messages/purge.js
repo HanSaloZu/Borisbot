@@ -23,7 +23,7 @@ module.exports = {
 
     const user = message.mentions.users.first() || null;
     let fetchedMessages = await message.channel.messages.fetch({
-      limit: messagesAmount
+      limit: user ? 100 : messagesAmount
     });
     let deletingMessages = [];
 
