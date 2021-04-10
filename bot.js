@@ -6,6 +6,8 @@ const commands = require("./commands");
 const help = require("./commands/help");
 
 const client = new Discord.Client();
+const prefix = config.get("prefix");
+
 commands.set("help", help);
 
 client.on("ready", () => {
@@ -21,7 +23,6 @@ client.on("disconnect", () => {
 });
 
 client.on("message", async (message) => {
-  const prefix = config.get("prefix");
   if (message.author.bot || !message.content.startsWith(prefix)) return;
   if (!message.guild) {
     return message.channel.send(
