@@ -4,7 +4,8 @@ module.exports = {
   name: "purge",
   description:
     "Deletes messages in a text channel\n This command may takes a while, but the chat using is allowed, new messages will not be deleted.\n\n `purge <amount>(optional, default value: 2) @<senderUsername>(optional, default value: all users)`",
-  async execute(message, args) {
+  async execute(message) {
+    let args = message.args;
     if (!message.member.permissions.has("MANAGE_MESSAGES"))
       throw new errors.PermissionError();
     if (!args.length) args.push(2);

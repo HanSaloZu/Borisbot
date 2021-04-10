@@ -8,8 +8,9 @@ const commands = require("./index");
 module.exports = {
   name: "help",
   description: "Gives a bot description and a list of commands",
-  execute(message, args) {
+  execute(message) {
     let response = "";
+    let args = message.args;
     if (!args.length) {
       response = createCommonMessage()
         .setTitle("About bot")

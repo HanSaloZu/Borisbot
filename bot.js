@@ -31,12 +31,14 @@ client.on("message", async (message) => {
   }
 
   const args = message.content.trim().slice(prefix.length).split(/ +/);
+  message.args = args;
+
   const commandName = args.shift();
   const command = commands.get(commandName);
 
   if (command) {
     try {
-      await command.execute(message, client, args);
+      await command.execute(message, client);
     } catch (error) {
       if (error.type === "custom") {
         message.channel.send(createErrorMessage(error.message));
