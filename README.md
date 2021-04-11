@@ -1,6 +1,6 @@
 # Borisbot
 
-Borisbot will help you simplify the process of moderating the discord server. Borisbot can ban/unban/kick server members, delete messages and more.
+Borisbot will help you simplify the process of moderating the discord server. Borisbot can ban/kick guild members, delete messages, collect information about user/guild/guild member and more.
 
 ## Commands
 
@@ -22,6 +22,7 @@ Borisbot will help you simplify the process of moderating the discord server. Bo
 
 - `flipcoin` - flip a coin
 - `btc` - gives the current bitcoin price (Powered by [CoinDesk](https://www.coindesk.com/price/bitcoin))
+- `uptime` - sends the bot uptime
 - `version` - gives the current version of the bot
 
 ## Getting started
