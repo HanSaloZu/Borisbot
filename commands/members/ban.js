@@ -1,5 +1,8 @@
 const { messages, errors } = require("../../utils");
-const generateMentionsString = require("./generateMentionsString");
+const {
+  generateMentionsString,
+  hasRequesterHigherRoleThanTarget
+} = require("./localUtils");
 
 function validateBanCommandArguments(message) {
   if (!message.member.permissions.has("BAN_MEMBERS"))
@@ -15,15 +18,19 @@ module.exports = {
     validateBanCommandArguments(message);
 
     let membersToBan = [];
-    for (let user of message.mentions.users) {
-      const member = await message.guild.members.fetch(user[1]);
-
-      if (!member.bannable) {
+    for (let mentionedUser of message.mentions.users) {
+      const member = await message.guild.members.fetch(mentionedUser[1]);
+      if (member.bannable) {
+        if (hasRequesterHigherRoleThanTarget(member, message.member)) {
+          membersToBan.push(member);
+        } else
+          return message.channel.send(
+            messages.createErrorMessage(`You cannot ban ${member.toString()}`)
+          );
+      } else
         return message.channel.send(
           messages.createErrorMessage(`I cannot ban ${member.toString()}`)
         );
-      }
-      membersToBan.push(member);
     }
 
     Promise.all(membersToBan.map((member) => member.ban()));

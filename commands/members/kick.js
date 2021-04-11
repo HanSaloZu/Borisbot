@@ -1,5 +1,8 @@
 const { messages, errors } = require("../../utils");
-const generateMentionsString = require("./generateMentionsString");
+const {
+  generateMentionsString,
+  hasRequesterHigherRoleThanTarget
+} = require("./localUtils");
 
 function validateKickCommandArguments(message) {
   if (!message.member.permissions.has("KICK_MEMBERS"))
@@ -15,15 +18,20 @@ module.exports = {
     validateKickCommandArguments(message);
 
     let membersToKick = [];
-    for (let user of message.mentions.users) {
-      const member = await message.guild.members.fetch(user[1]);
+    for (let mentionedUser of message.mentions.users) {
+      const member = await message.guild.members.fetch(mentionedUser[1]);
 
-      if (!member.kickable) {
+      if (member.kickable) {
+        if (hasRequesterHigherRoleThanTarget(member, message.member)) {
+          membersToKick.push(member);
+        } else
+          return message.channel.send(
+            messages.createErrorMessage(`You cannot kick ${member.toString()}`)
+          );
+      } else
         return message.channel.send(
           messages.createErrorMessage(`I cannot kick ${member.toString()}`)
         );
-      }
-      membersToKick.push(member);
     }
 
     await Promise.all(membersToKick.map((member) => member.kick()));
