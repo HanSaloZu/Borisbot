@@ -7,12 +7,11 @@ module.exports = {
     "Gives complete information about the user/guild member\n\n `user-info @<username>(optional, default value: message sender)`",
   async execute(message, client) {
     const user = message.mentions.users.first() || message.author;
-    const registeredAt = user.createdAt.toLocaleDateString("en-US", dateFormat);
-
     const guildMember = await message.guild.members.fetch(user);
-    const isPremium = Boolean(guildMember.premiumSince);
     const guildOwner = await client.users.fetch(message.guild.ownerID);
-    const isGuildOwner = user.id === guildOwner.id;
+
+    const registeredAt = user.createdAt.toLocaleDateString("en-US", dateFormat);
+    const isPremium = Boolean(guildMember.premiumSince);
 
     message.channel.send(
       messages
@@ -36,7 +35,7 @@ module.exports = {
             `Premium since: ${
               isPremium ? guildMember.premiumSince : "No premium"
             }\n` +
-            `Is guild owner: ${isGuildOwner ? "Yes" : "No"}\n` +
+            `Is guild owner: ${user.id === guildOwner.id ? "Yes" : "No"}\n` +
             `Joined At: ${guildMember.joinedAt}`
         )
     );

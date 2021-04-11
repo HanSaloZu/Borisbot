@@ -6,6 +6,7 @@ module.exports = {
   description: "Gives complete information about the guild",
   async execute(message, client) {
     const guild = message.guild;
+
     const guildOwner = await client.users.fetch(guild.ownerID);
     const guildRegion =
       guild.region.charAt(0).toUpperCase() + guild.region.slice(1);

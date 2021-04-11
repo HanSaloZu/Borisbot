@@ -21,9 +21,8 @@ function hasRequesterHigherRoleThanTarget(commandTarget, commandRequester) {
 
   membersRoles.sort((roleA, roleB) => Role.comparePositions(roleB, roleA));
   const highestRole = membersRoles.first();
-  if (requesterRoles.has(highestRole.id) && !targetRoles.has(highestRole.id))
-    return true;
-  return false;
+
+  return requesterRoles.has(highestRole.id) && !targetRoles.has(highestRole.id);
 }
 
 module.exports = {

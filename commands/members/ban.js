@@ -20,6 +20,7 @@ module.exports = {
     let membersToBan = [];
     for (let mentionedUser of message.mentions.users) {
       const member = await message.guild.members.fetch(mentionedUser[1]);
+
       if (member.bannable) {
         if (hasRequesterHigherRoleThanTarget(member, message.member)) {
           membersToBan.push(member);

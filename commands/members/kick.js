@@ -35,7 +35,7 @@ module.exports = {
     }
 
     await Promise.all(membersToKick.map((member) => member.kick()));
-    let response =
+    const response =
       generateMentionsString(membersToKick) + " kicked from this guild";
     message.channel.send(messages.createCommonMessage(response));
   }
