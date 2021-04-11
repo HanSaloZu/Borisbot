@@ -1,6 +1,6 @@
 {
   "name": "borisbot",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Discord bot to manage your server",
   "main": "bot.js",
   "scripts": {
