@@ -1,7 +1,7 @@
 const { messages, errors } = require("../../utils");
 const generateMentionsString = require("./generateMentionsString");
 
-function validate_ban_command_arguments(message) {
+function validateBanCommandArguments(message) {
   if (!message.member.permissions.has("BAN_MEMBERS"))
     throw new errors.PermissionError();
   if (!message.mentions.users.size) throw new errors.MentionRequiredError();
@@ -12,7 +12,7 @@ module.exports = {
   description:
     "Bans the users from the guild\n\n `ban @<username> @<username> @<username> ...(must be at least one username)`",
   async execute(message) {
-    validate_ban_command_arguments(message);
+    validateBanCommandArguments(message);
 
     let membersToBan = [];
     for (let user of message.mentions.users) {

@@ -1,6 +1,6 @@
 const { errors, messages } = require("../../utils");
 
-function validate_purge_command_arguments(message) {
+function validatePurgeCommandArguments(message) {
   let args = message.args;
   if (!message.member.permissionsIn(message.channel).has("MANAGE_MESSAGES"))
     throw new errors.PermissionError();
@@ -23,7 +23,7 @@ module.exports = {
   description:
     "Deletes messages in a text channel\n This command may takes a while, but the chat using is allowed, new messages will not be deleted.\n\n `purge <amount>(optional, default value: 2) @<senderUsername>(optional, default value: all users)`",
   async execute(message) {
-    validate_purge_command_arguments(message);
+    validatePurgeCommandArguments(message);
 
     const messagesAmount = Number(message.args[0]);
     const user = message.mentions.users.first() || null;

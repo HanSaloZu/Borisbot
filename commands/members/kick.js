@@ -1,7 +1,7 @@
 const { messages, errors } = require("../../utils");
 const generateMentionsString = require("./generateMentionsString");
 
-function validate_kick_command_arguments(message) {
+function validateKickCommandArguments(message) {
   if (!message.member.permissions.has("KICK_MEMBERS"))
     throw new errors.PermissionError();
   if (!message.mentions.users.size) throw new errors.MentionRequiredError();
@@ -12,7 +12,7 @@ module.exports = {
   description:
     "Kicks the users from the guild\n\n `kick @<username> @<username> @<username> ...(must be at least one username)`",
   async execute(message) {
-    validate_kick_command_arguments(message);
+    validateKickCommandArguments(message);
 
     let membersToKick = [];
     for (let user of message.mentions.users) {
