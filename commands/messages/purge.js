@@ -2,7 +2,7 @@ const { errors, messages } = require("../../utils");
 
 function validate_purge_command_arguments(message) {
   let args = message.args;
-  if (!message.member.permissions.has("MANAGE_MESSAGES"))
+  if (!message.member.permissionsIn(message.channel).has("MANAGE_MESSAGES"))
     throw new errors.PermissionError();
   if (!args.length) args.push(2);
 
